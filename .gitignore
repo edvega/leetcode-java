@@ -1,18 +1,9 @@
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
-.kotlin
+# IntelliJ
+.idea
 
-### IntelliJ IDEA ###
-.idea/*
-*.iws
-*.iml
-*.ipr
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+# Gradle
+.gradle
+build
 
 ### Mac OS ###
 .DS_Store

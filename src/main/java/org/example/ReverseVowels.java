@@ -1,8 +1,5 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ReverseVowels {
 
     public static void main(String[] args) {
@@ -10,24 +7,36 @@ public class ReverseVowels {
     }
 
     public static String reverseVowels(String s) {
-        List<Character> vowels = List.of('a', 'e', 'i', 'o', 'u');
-        List<Character> vowelsFoundArr = new ArrayList<>();
-        List<Integer> vowelsPositions = new ArrayList<>();
-        StringBuilder output = new StringBuilder(s);
+        char[] chars = s.toCharArray();
+        int start = 0 ;
+        int end = s.length()-1;
 
-        for (int i = 0; i < s.length(); i++) {
-            if (vowels.contains(s.toLowerCase().charAt(i))) {
-                vowelsFoundArr.add(s.charAt(i));
-                vowelsPositions.add(i);
+        while (start < end) {
+            while (start < end && !isVowel(chars[start])) {
+                start++;
+            }
+
+            while (start < end && !isVowel(chars[end])) {
+                end--;
+            }
+
+            if (start < end) {
+                swap(chars, start, end);
+                start++;
+                end--;
             }
         }
+        return new String(chars);
+    }
 
-        int vowelsNum = vowelsFoundArr.size();
-        for (Integer vowelsPosition : vowelsPositions) {
-            output.setCharAt(vowelsPosition, vowelsFoundArr.get(vowelsNum - 1));
-            vowelsNum--;
-        }
+    private static void swap(char[] word, int start, int end){
+        char temp = word[start];
+        word[start] = word[end];
+        word[end] = temp;
+    }
 
-        return output.toString();
+    private static boolean isVowel(char c) {
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'
+                || c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U';
     }
 }
